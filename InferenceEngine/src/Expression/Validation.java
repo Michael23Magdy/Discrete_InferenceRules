@@ -38,6 +38,9 @@ public class Validation {
         return stack.isEmpty() && !lastWasOperator && count <= 2;
     }
 
+    public static boolean isVariable(Character ch){
+        return Character.isLetter(ch) && ch!='v';
+    }
     private static boolean isOperator(char ch) {
         return ch == '~' || ch == '^' || ch == 'v' || ch == '>';
     }

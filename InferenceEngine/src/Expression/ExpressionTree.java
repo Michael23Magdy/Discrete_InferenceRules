@@ -26,13 +26,18 @@ public class ExpressionTree implements Expression {
     public String getRepresentation() {
         return representation;
     }
+    public void setRepresentation(String representation) {
+        this.representation = representation;
+    }
+
     public String getPostfixRepresentation() {
         return postfixRepresentation;
     }
 
-    public void setRepresentation(String representation) throws Exception {
-        if(!Validation.isValid(representation)) throw new Exception("Invalid Input");
-        this.representation = representation;
+
+    public ExpressionTree(String expression) throws Exception{
+        if(!Validation.isValid(expression)) throw new Exception("Invalid Input");
+        this.representation = expression;
         this.postfixRepresentation = InfixToPostfix.convert(representation);
         Stack<ExpressionNode> st = new Stack<>();
         for (char c: postfixRepresentation.toCharArray()){
@@ -48,9 +53,5 @@ public class ExpressionTree implements Expression {
             }
         }
         this.root = st.pop();
-    }
-
-    public ExpressionTree(String expression) throws Exception{
-        setRepresentation(expression);
     }
 }

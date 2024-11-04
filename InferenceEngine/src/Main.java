@@ -1,45 +1,33 @@
-import Expression.ExpressionTree;
-import Inference.Rules.*;
+
+import java.util.Scanner;
 
 public class Main {
 
 
     public static void main(String[] args) {
-        try{
-            ExpressionTree expressionTree1 = new ExpressionTree("~PvR");
-            ExpressionTree expressionTree2 = new ExpressionTree("PvQ");
 
-            InferenceRule modusPonens = new ModusPonens();
-            if(modusPonens.matches(expressionTree1,expressionTree2)){
-                ExpressionTree expressionTree = modusPonens.apply(expressionTree1,expressionTree2);
-                System.out.println(expressionTree.getRepresentation());
-            }
+        try (Scanner scanner = new Scanner(System.in)) {
+            LogicalExpressionSolverController logicalSolver = new LogicalExpressionSolverController();
+            InferenceEngineController inferenceEngine = new InferenceEngineController();
+            System.out.println("---- Application Menu ----");
+            System.out.println("Choose an option:");
+            System.out.println("1 - Logical Expression Solver");
+            System.out.println("2 - Inference Engine");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
 
-            InferenceRule modusTollens = new ModusTollens();
-            if(modusTollens.matches(expressionTree1,expressionTree2)){
-                ExpressionTree expressionTree = modusTollens.apply(expressionTree1,expressionTree2);
-                System.out.println(expressionTree.getRepresentation());
+            switch (choice) {
+                case 1:
+                    logicalSolver.runSolver();
+                    break;
+                case 2:
+                    inferenceEngine.runEngine();
+                    break;
+                default:
+                    System.out.println("Invalid input. Program ending.");
             }
-
-            InferenceRule hypotheticalSyllogism = new HypotheticalSyllogism();
-            if(hypotheticalSyllogism.matches(expressionTree1,expressionTree2)){
-                ExpressionTree expressionTree = hypotheticalSyllogism.apply(expressionTree1,expressionTree2);
-                System.out.println(expressionTree.getRepresentation());
-            }
-
-            InferenceRule disjunctiveSyllogism = new DisjunctiveSyllogism();
-            if(disjunctiveSyllogism.matches(expressionTree1,expressionTree2)){
-                ExpressionTree expressionTree = disjunctiveSyllogism.apply(expressionTree1,expressionTree2);
-                System.out.println(expressionTree.getRepresentation());
-            }
-
-            InferenceRule resolution = new Resolution();
-            if(resolution.matches(expressionTree1,expressionTree2)){
-                ExpressionTree expressionTree = resolution.apply(expressionTree1,expressionTree2);
-                System.out.println(expressionTree.getRepresentation());
-            }
-        }catch (Exception e){
-            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Invalid input. Program ending.");
         }
     }
 }

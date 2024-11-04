@@ -16,7 +16,6 @@ public class Evaluator implements LogicalExpressionSolver {
     }
     public static boolean evaluate(String postfix, Map<Character,Boolean> variableValues) {
         Stack<Boolean> stack = new Stack<>();
-
         for (char ch : postfix.toCharArray()) {
             if (Character.isLetter(ch) && ch != 'v') {
                 Boolean value = variableValues.get(ch);

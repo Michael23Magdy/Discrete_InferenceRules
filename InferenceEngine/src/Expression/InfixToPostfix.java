@@ -20,6 +20,10 @@ public class InfixToPostfix {
                 }
                 if (!st.isEmpty()) st.pop();
             } else {
+                if(!st.isEmpty() && c=='~' && st.peek()=='~'){
+                    st.pop();
+                    continue;
+                }
                 while (!st.isEmpty() && Precedence.get(c) <= Precedence.get(st.peek())) {
                     result.append(st.pop());
                 }

@@ -53,7 +53,7 @@ public class ExpressionNode {
 
     private static String getExpressionRepresentation(ExpressionNode exp){
         Character operation = exp.getOperator();
-        if(Character.isLetter(operation) & operation !='v'){
+        if(Validation.isVariable(operation)){
             return ""+ operation;
         } else if(operation == '~') {
             String right = getExpressionRepresentation(exp.getLeftExpression());

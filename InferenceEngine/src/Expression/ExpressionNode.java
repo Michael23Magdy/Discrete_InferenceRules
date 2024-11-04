@@ -28,6 +28,11 @@ public class ExpressionNode {
         return operator;
     }
 
+    public boolean isNegativeOf(ExpressionNode expressionNode){
+        return this.isEqual(new ExpressionNode(expressionNode, '~')) ||
+                expressionNode.isEqual(new ExpressionNode(this,'~'));
+    }
+
     public boolean isEqual(ExpressionNode expressionNode){
         if (this.operator != expressionNode.getOperator()) {
             return false;

@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
         try{
-            ExpressionTree expressionTree1 = new ExpressionTree("~P");
+            ExpressionTree expressionTree1 = new ExpressionTree("~PvR");
             ExpressionTree expressionTree2 = new ExpressionTree("PvQ");
 
             InferenceRule modusPonens = new ModusPonens();
@@ -30,6 +30,12 @@ public class Main {
             InferenceRule disjunctiveSyllogism = new DisjunctiveSyllogism();
             if(disjunctiveSyllogism.matches(expressionTree1,expressionTree2)){
                 ExpressionTree expressionTree = disjunctiveSyllogism.apply(expressionTree1,expressionTree2);
+                System.out.println(expressionTree.getRepresentation());
+            }
+
+            InferenceRule resolution = new Resolution();
+            if(resolution.matches(expressionTree1,expressionTree2)){
+                ExpressionTree expressionTree = resolution.apply(expressionTree1,expressionTree2);
                 System.out.println(expressionTree.getRepresentation());
             }
         }catch (Exception e){

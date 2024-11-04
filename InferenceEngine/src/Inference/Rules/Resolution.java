@@ -4,6 +4,9 @@ import Expression.ExpressionNode;
 import Expression.ExpressionTree;
 
 public class Resolution implements InferenceRule{
+    public String getRuleName(){
+        return "Resolution";
+    }
 
     @Override
     public boolean matches(ExpressionTree exp1, ExpressionTree exp2) {

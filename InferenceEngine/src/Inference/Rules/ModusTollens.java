@@ -4,6 +4,9 @@ import Expression.ExpressionNode;
 import Expression.ExpressionTree;
 
 public class ModusTollens implements InferenceRule{
+    public String getRuleName(){
+        return "Modus Tollens";
+    }
 
     @Override
     public boolean matches(ExpressionTree exp1, ExpressionTree exp2) {

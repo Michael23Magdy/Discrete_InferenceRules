@@ -3,6 +3,9 @@ package Inference.Rules;
 import Expression.ExpressionTree;
 
 public class ModusPonens implements InferenceRule{
+    public String getRuleName(){
+        return "Modus Ponens";
+    }
 
     @Override
     public boolean matches(ExpressionTree exp1, ExpressionTree exp2) {

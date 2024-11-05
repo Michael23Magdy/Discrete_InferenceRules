@@ -46,7 +46,7 @@ public class InferenceEngineImpl  implements InferenceEngine{
                         ExpressionTree inferredExpressionTree = rule.apply(expressionTrees.get(i).first, expressionTrees.get(j).first);
                         boolean isPresent = false;
                         for (int k = 0; k < expressionTrees.size(); k++) {
-                            isPresent = inferredExpressionTree.getRoot().isEqual(expressionTrees.get(k).first.getRoot());
+                            isPresent |= inferredExpressionTree.getRoot().isEqual(expressionTrees.get(k).first.getRoot());
                         }
                         if(!isPresent){
                             addInferredExpression(inferredExpressionTree, rule.getRuleName()+ " From " + (j+1) +"&" +(i+1));
